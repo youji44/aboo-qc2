@@ -1,6 +1,5 @@
 'use client';
 
-import { Metadata } from 'next';
 import { useState } from 'react';
 import DataTable from '@/components/DataTable';
 import Link from 'next/link';
@@ -10,11 +9,6 @@ import {
   UserIcon,
   FolderIcon,
 } from '@heroicons/react/24/outline';
-
-export const metadata: Metadata = {
-  title: 'Users Management',
-  description: 'Manage users and their permissions in the system',
-};
 
 interface User {
   id: number;
