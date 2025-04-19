@@ -1,6 +1,15 @@
+'use client';
+
 import { Metadata } from 'next';
 import { useState } from 'react';
 import DataTable from '@/components/DataTable';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import {
+  UserGroupIcon,
+  UserIcon,
+  FolderIcon,
+} from '@heroicons/react/24/outline';
 
 export const metadata: Metadata = {
   title: 'Users Management',
@@ -17,6 +26,8 @@ interface User {
 }
 
 export default function UsersPage() {
+  const pathname = usePathname();
+  const [expandedMenus, setExpandedMenus] = useState<string[]>(['Users']);
   const [users, setUsers] = useState<User[]>([
     {
       id: 1,
@@ -77,23 +88,65 @@ export default function UsersPage() {
     setUsers(users.filter(u => u.id !== user.id));
   };
 
+  const toggleMenu = (menu: string) => {
+    setExpandedMenus(prev =>
+      prev.includes(menu)
+        ? prev.filter(item => item !== menu)
+        : [...prev, menu]
+    );
+  };
+
+  const navigation = [
+    {
+      name: 'All Users',
+      href: '/dashboard/users/all',
+      icon: UserGroupIcon,
+      current: pathname === '/dashboard/users/all',
+    },
+    {
+      name: 'Active Users',
+      href: '/dashboard/users/active',
+      icon: UserIcon,
+      current: pathname === '/dashboard/users/active',
+    },
+    {
+      name: 'User Groups',
+      href: '/dashboard/users/groups',
+      icon: FolderIcon,
+      current: pathname === '/dashboard/users/groups',
+    },
+  ];
+
   return (
     <div className="space-y-6">
-      <div className="sm:flex sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold text-gray-900">Users Management</h1>
-          <p className="mt-1 text-sm text-gray-500">
-            Manage your users and their permissions in the system
-          </p>
-        </div>
-        <div className="mt-4 sm:mt-0">
-          <button
-            onClick={handleAdd}
-            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">Users</h1>
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {navigation.map((item) => (
+          <Link
+            key={item.name}
+            href={item.href}
+            className={`flex items-center p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow ${
+              item.current ? 'ring-2 ring-blue-500' : ''
+            }`}
           >
-            Add New User
-          </button>
-        </div>
+            <item.icon
+              className={`h-8 w-8 ${
+                item.current ? 'text-blue-500' : 'text-gray-400'
+              }`}
+            />
+            <div className="ml-4">
+              <h2 className="text-lg font-medium text-gray-900">{item.name}</h2>
+              <p className="mt-1 text-sm text-gray-500">
+                {item.name === 'All Users' && 'View and manage all users'}
+                {item.name === 'Active Users' && 'View currently active users'}
+                {item.name === 'User Groups' && 'Manage user groups and permissions'}
+              </p>
+            </div>
+          </Link>
+        ))}
       </div>
 
       <DataTable

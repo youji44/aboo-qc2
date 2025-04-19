@@ -8,7 +8,7 @@ import {
   UserGroupIcon,
   UserIcon,
   Cog6ToothIcon,
-  ArrowLeftOnRectangleIcon,
+  ArrowLeftEndOnRectangleIcon,
   ChartBarIcon,
   DocumentTextIcon,
   CalendarIcon,
@@ -162,7 +162,7 @@ export default function LeftMenu() {
         <button
           className="group flex items-center w-full px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900"
         >
-          <ArrowLeftOnRectangleIcon
+          <ArrowLeftEndOnRectangleIcon
             className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
             aria-hidden="true"
           />
