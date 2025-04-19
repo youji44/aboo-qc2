@@ -13,13 +13,11 @@ interface User {
   lastLogin: string;
 }
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function UserPage({ params }: PageProps) {
+export default async function UserPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const router = useRouter();
   const [user] = useState<User>({
     id: Number(params.id),
