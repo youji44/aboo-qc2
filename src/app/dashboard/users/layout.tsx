@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Users',
-  description: 'Manage users and their permissions in the system',
+  title: 'Users | Aboo QC',
+  description: 'Manage users and their permissions',
 };
 
 export default function UsersLayout({
@@ -10,5 +10,5 @@ export default function UsersLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <>{children}</>;
 } 

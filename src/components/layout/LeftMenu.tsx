@@ -97,7 +97,7 @@ export default function LeftMenu() {
 
       {/* Navigation Section */}
       <nav className="flex-1 py-4">
-        <div className="space-y-1 px-3">
+        <div className="space-y-1">
           {navigation.map((item) => {
             const isExpanded = expandedMenus.includes(item.name);
             const hasActiveSubmenu = item.submenu?.some(sub => pathname === sub.href);
