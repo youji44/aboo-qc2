@@ -21,7 +21,6 @@ interface User {
 
 export default function UsersPage() {
   const pathname = usePathname();
-  const [expandedMenus, setExpandedMenus] = useState<string[]>(['Users']);
   const [users, setUsers] = useState<User[]>([
     {
       id: 1,
@@ -80,14 +79,6 @@ export default function UsersPage() {
   const handleDelete = (user: User) => {
     // Implement delete user logic
     setUsers(users.filter(u => u.id !== user.id));
-  };
-
-  const toggleMenu = (menu: string) => {
-    setExpandedMenus(prev =>
-      prev.includes(menu)
-        ? prev.filter(item => item !== menu)
-        : [...prev, menu]
-    );
   };
 
   const navigation = [
