@@ -21,7 +21,7 @@ interface PageProps {
 
 export default function UserPage({ params }: PageProps) {
   const router = useRouter();
-  const [user, setUser] = useState<User>({
+  const [user] = useState<User>({
     id: Number(params.id),
     name: 'John Doe',
     email: 'john@example.com',
