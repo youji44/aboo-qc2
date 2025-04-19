@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 
 interface User {
@@ -12,12 +13,12 @@ interface User {
   lastLogin: string;
 }
 
-export default async function UserPage({
+export default function UserPage({
   params,
 }: {
   params: { id: string };
 }) {
-  //const router = useRouter();
+  const router = useRouter();
   const [user] = useState<User>({
     id: Number(params.id),
     name: 'John Doe',
@@ -35,7 +36,7 @@ export default async function UserPage({
   const handleDelete = () => {
     // Implement delete logic
     console.log('Delete user:', user);
-    //router.push('/dashboard/users/all');
+    router.push('/dashboard/users/all');
   };
 
   return (
