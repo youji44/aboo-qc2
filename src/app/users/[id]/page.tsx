@@ -18,7 +18,7 @@ export default async function UserPage({
 }: {
   params: { id: string };
 }) {
-  const router = useRouter();
+  //const router = useRouter();
   const [user] = useState<User>({
     id: Number(params.id),
     name: 'John Doe',
@@ -36,7 +36,7 @@ export default async function UserPage({
   const handleDelete = () => {
     // Implement delete logic
     console.log('Delete user:', user);
-    router.push('/dashboard/users/all');
+    //router.push('/dashboard/users/all');
   };
 
   return (
