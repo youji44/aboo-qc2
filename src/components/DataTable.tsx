@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { PlusIcon, PencilIcon, TrashIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
-interface Column<T> {
+interface Column<T extends Record<string, unknown>> {
   key: keyof T;
   label: string;
-  render?: (value: T[keyof T]) => React.ReactNode;
+  render?: (value: T[keyof T], item: T) => React.ReactNode;
 }
 
 interface DataTableProps<T extends Record<string, unknown>> {
@@ -74,7 +74,7 @@ export default function DataTable<T extends Record<string, unknown>>({ title, co
               <tr key={index}>
                 {columns.map((column) => (
                   <td key={String(column.key)} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {column.render ? column.render(item[column.key]) : String(item[column.key])}
+                    {column.render ? column.render(item[column.key], item) : String(item[column.key])}
                   </td>
                 ))}
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
