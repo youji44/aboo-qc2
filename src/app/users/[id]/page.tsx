@@ -1,11 +1,9 @@
-import UserDetails from '@/components/UserDetails';
+import UserDetails from './UserDetails';
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function UserPage({ params }: PageProps) {
+export default function UserPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   return <UserDetails userId={Number(params.id)} />;
 } 
