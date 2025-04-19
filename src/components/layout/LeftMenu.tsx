@@ -39,7 +39,7 @@ export default function LeftMenu() {
       current: pathname === '/dashboard/overview',
       submenu: [
         { name: 'Overview', href: '/dashboard/overview', icon: ChartBarIcon },
-        { name: 'Daily', href: '/dashboard/daily', icon: DocumentTextIcon },
+        { name: 'Analytics', href: '/dashboard/analytics', icon: DocumentTextIcon },
         { name: 'Calendar', href: '/dashboard/calendar', icon: CalendarIcon }
       ]
     },
